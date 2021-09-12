@@ -1,0 +1,50 @@
+{
+    "name": "@bardoui/validators",
+    "version": "1.0.0",
+    "private": false,
+    "description": "Extra validators for Yup",
+    "license": "ISC",
+    "main": "dist/validators.cjs.js",
+    "module": "dist/validators.esm.js",
+    "unpkg": "dist/validators.global.js",
+    "typings": "dist/validators.d.ts",
+    "scripts": {
+        "build": "rollup -c",
+        "prepare": "npm run build"
+    },
+    "files": [
+        "dist"
+    ],
+    "keywords": [
+        "yup",
+        "validation",
+        "validator"
+    ],
+    "authors": [
+        {
+            "email": "m.ajamekramy@gmail.com",
+            "homepage": "http://ekramy.ir",
+            "name": "Mojtaba Ekramy",
+            "role": "Developer"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bardoui/validators"
+    },
+    "dependencies": {
+        "core-js": "^3.17.3",
+        "yup": "^0.32.9",
+        "jalali-moment": "^3.3.10"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^19.0.0",
+        "@typescript-eslint/eslint-plugin": "^4.18.0",
+        "@typescript-eslint/parser": "^4.18.0",
+        "eslint": "^6.7.2",
+        "rollup": "^2.56.3",
+        "rollup-plugin-cleaner": "^1.0.0",
+        "rollup-plugin-typescript2": "^0.30.0",
+        "typescript": "^4.4.3"
+    }
+}
