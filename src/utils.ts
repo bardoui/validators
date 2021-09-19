@@ -1,63 +1,101 @@
 import { setLocale } from "yup";
-
-/**
- * Keyed Error Response
- */
-export interface KeyedError {
-    [field: string]: {
-        [error: string]: string;
-    };
-}
+import { object } from "yup/lib/locale";
 
 /**
  * Error Map
- *
- * Field: Errors[]
- * Field: Messages[]
  */
 export interface ErrorMap {
     [field: string]: string[];
 }
 
 /**
- * Extract error keys from keyed error
+ * Error Field
  *
- * @param errors error response
- * @returns error key list
+ * Single error for field
  */
-export function extractErrorKeys(errors: KeyedError): ErrorMap {
+export interface ErrorField {
+    [field: string]: string;
+}
+
+/**
+ * Get error rules from keyed error
+ *
+ * @param err error response
+ * @returns error rules
+ */
+export function getErrorRules(err: any): ErrorMap {
     let res: ErrorMap = {};
-    for (const field in errors) {
-        if (Object.prototype.hasOwnProperty.call(errors[field], field)) {
-            let errs: string[] = [];
-            for (const err in errors[field]) {
-                if (Object.prototype.hasOwnProperty.call(errors[field], err)) {
-                    errs.push(err);
-                }
+    if (typeof err === "object" && err) {
+        for (const [field, errors] of Object.entries(err)) {
+            if (typeof errors == "object" && errors) {
+                res[field] = Object.keys(errors as object);
             }
-            res[field] = errs;
         }
     }
     return res;
 }
 
 /**
- * Extract error messages from keyed error
+ * Get error messages from keyed error
  *
- * @param errors error response
- * @returns error key list
+ * @param err error response
+ * @returns error messages
  */
-export function extractErrorMessages(errors: KeyedError): ErrorMap {
+export function getErrorMessages(err: any): ErrorMap {
     let res: ErrorMap = {};
-    for (const field in errors) {
-        if (Object.prototype.hasOwnProperty.call(errors[field], field)) {
-            let messages: string[] = [];
-            for (const err in errors[field]) {
-                if (Object.prototype.hasOwnProperty.call(errors[field], err)) {
-                    messages.push(errors[field][err]);
-                }
+    if (typeof err === "object" && err) {
+        for (const [field, errors] of Object.entries(err)) {
+            if (typeof errors == "object" && errors) {
+                res[field] = Object.values(errors as object);
             }
-            res[field] = messages;
+        }
+    }
+    return res;
+}
+
+/**
+ * Get first error rule from errors list
+ *
+ * @param err error response
+ * @returns first error rule
+ */
+export function getFirstRule(err: any): ErrorField {
+    let res: ErrorField = {};
+    if (typeof err === "object" && err) {
+        for (const [field, errors] of Object.entries(err)) {
+            if (Array.isArray(errors)) {
+                res[field] = errors[0];
+            } else if (typeof errors === "object") {
+                if (Object.keys(errors as object).length) {
+                    res[field] = Object.keys(errors as object)[0];
+                }
+            } else {
+                res[field] = `${object}`;
+            }
+        }
+    }
+    return res;
+}
+
+/**
+ * Get first error message from errors list
+ *
+ * @param err error response
+ * @returns first error message
+ */
+export function getFirstMessage(err: any): ErrorField {
+    let res: ErrorField = {};
+    if (typeof err === "object" && err) {
+        for (const [field, errors] of Object.entries(err)) {
+            if (Array.isArray(errors)) {
+                res[field] = errors[0];
+            } else if (typeof errors === "object") {
+                if (Object.values(errors as object).length) {
+                    res[field] = Object.values(errors as object)[0];
+                }
+            } else {
+                res[field] = `${object}`;
+            }
         }
     }
     return res;

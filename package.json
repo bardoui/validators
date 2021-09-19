@@ -1,6 +1,6 @@
 {
     "name": "@bardoui/validators",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "private": false,
     "description": "Extra validators for Yup",
     "license": "ISC",

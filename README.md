@@ -35,30 +35,56 @@ registerUsernameValidator();
 
 Validate package contains following helper functions:
 
-### extractErrorKeys
+### getErrorRules
 
-This function get key value response and returns error keys only.
+Get error rules from keyed error.
 
 ```ts
 // Signature:
-export function extractErrorKeys(errors: KeyedError): ErrorMap;
+export function getErrorRules(errors: any): ErrorMap;
 
 // Example
 // Error Response => {"username": {"max": "username max is 20 char", "unique": "username must unique"}, "password": {"min" :"password must have 10 char at least"}}
 // result => {"username": ["max","unique"], "password": ["min"]}
 ```
 
-### extractErrorMessages
+### getErrorMessages
 
-This function get key value response and returns error messages only.
+Get error messages from keyed error.
 
 ```ts
 // Signature:
-export function extractErrorMessages(errors: KeyedError): ErrorMap;
+export function getErrorMessages(errors: any): ErrorMap;
 
 // Example
 // Error Response => {"username": {"max": "username max is 20 char", "unique": "username must unique"}, "password": {"min" :"password must have 10 char at least"}}
 // result => {"username": ["username max is 20 char","username must unique"], "password": ["password must have 10 char at least"]}
+```
+
+### getFirstRule
+
+Get first error rule from errors list.
+
+```ts
+// Signature:
+export function getFirstRule(errors: any): ErrorField;
+
+// Example
+// Error Response => {"username": {"max": "username max is 20 char", "unique": "username must unique"}, "password": {"min" :"password must have 10 char at least"}}
+// result => {"username": "max", "password": "min"}
+```
+
+### getFirstMessage
+
+Get first error message from errors list.
+
+```ts
+// Signature:
+export function getFirstMessage(errors: any): ErrorField;
+
+// Example
+// Error Response => {"username": {"max": "username max is 20 char", "unique": "username must unique"}, "password": {"min" :"password must have 10 char at least"}}
+// result => {"username": "username max is 20 char", "password": "password must have 10 char at least"}
 ```
 
 ### makeYupKeyedErrors
