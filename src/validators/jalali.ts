@@ -1,7 +1,7 @@
 import { s } from "@/utils";
-import { from } from "jalali-moment";
 import { addMethod, string } from "yup";
 import { Maybe } from "yup/lib/types";
+import { parseFrom } from "@bardoui/date-utils";
 
 /**
  * Register jalali date validator to yup
@@ -18,7 +18,7 @@ export function registerJalaliDateValidator(defaultMessage = "jalali") {
             test: (v: Maybe<string>) => {
                 if (!v) return true;
                 try {
-                    if (from(s(v), "fa", format).isValid()) return true;
+                    if (parseFrom(s(v), format).isValid()) return true;
                 } catch (exp) {}
                 return false;
             },
