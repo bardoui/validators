@@ -22,6 +22,6 @@ export function registerAlnumValidator(defaultMessage = "alnum") {
 
 declare module "yup" {
     interface StringSchema {
-        alnum(longNum: boolean, message?: string): StringSchema;
+        alnum(contains: string, message?: string): StringSchema;
     }
 }
