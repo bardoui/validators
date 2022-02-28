@@ -105,6 +105,22 @@ Validator contains following validators:
 
 **Note** by default all validators return validator key as error message (in lowercase). you can pass error message on create time or use time to override this behavior.
 
+### alnum
+
+Validate string contains alpha-numeric string. This validator accept a string to contains in check/
+
+```ts
+yup.string().alnum("-"); // alnum and dash
+```
+
+### alnumfa
+
+Validate string contains alpha-numeric and persian characters string. This validator accept a string to contains in check/
+
+```ts
+yup.string().alnumfa("");
+```
+
 ### credit
 
 Validate credit card number. this validator accept tow mode, long (20 digit) and short (16 digit) card number. Allowed formats:

@@ -1,4 +1,6 @@
 export * from "./utils";
+import { registerAlnumValidator } from "./validators/alnum";
+import { registerAlnumFaValidator } from "./validators/alnumfa";
 import { registerCreditCardValidator } from "./validators/credit";
 import { registerIDNumberValidator } from "./validators/id";
 import { registerIdentifierValidator } from "./validators/identifier";
@@ -17,6 +19,8 @@ import { registerUUIDValidator } from "./validators/uuid";
  * register all validator
  */
 export function registerAll() {
+    registerAlnumValidator();
+    registerAlnumFaValidator();
     registerCreditCardValidator();
     registerIDNumberValidator();
     registerIdentifierValidator();
@@ -33,6 +37,8 @@ export function registerAll() {
 }
 
 export {
+    registerAlnumValidator,
+    registerAlnumFaValidator,
     registerCreditCardValidator,
     registerIDNumberValidator,
     registerIdentifierValidator,
