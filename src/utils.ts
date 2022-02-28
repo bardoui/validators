@@ -110,13 +110,13 @@ export function makeYupKeyedErrors() {
     setLocale({
         mixed: {
             required: "required",
-            notRequired: "notRequired",
-            defined: "defined",
             oneOf: "oneOf",
             notOneOf: "notOneOf",
+            notType: "notType",
+            defined: "defined",
         },
+
         string: {
-            required: "required",
             length: "length",
             min: "min",
             max: "max",
@@ -124,11 +124,11 @@ export function makeYupKeyedErrors() {
             email: "email",
             url: "url",
             uuid: "uuid",
-            ensure: "ensure",
             trim: "trim",
             lowercase: "lowercase",
             uppercase: "uppercase",
         },
+
         number: {
             min: "min",
             max: "max",
@@ -137,23 +137,24 @@ export function makeYupKeyedErrors() {
             positive: "positive",
             negative: "negative",
             integer: "integer",
-            truncate: "truncate",
-            round: "round",
         },
+
         date: {
             min: "min",
             max: "max",
         },
+
+        object: {
+            noUnknown: "noUnknown",
+        },
+
         array: {
             length: "length",
             min: "min",
             max: "max",
-            ensure: "ensure",
-            compact: "compact",
         },
-        object: {
-            from: "from",
-            noUnknown: "noUnknown",
+        boolean: {
+            isValue: "isValue",
         },
     });
 }
